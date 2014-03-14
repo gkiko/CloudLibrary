@@ -14,7 +14,7 @@ public class BookMark {
 		this.latitude = latitude;
 	}
 	
-	private BookMark(double longitude, double latitude){
+	public BookMark(double longitude, double latitude){
 		this.longitude = longitude;
 		this.latitude = latitude;
 	}
@@ -40,7 +40,7 @@ public class BookMark {
 		return distance;
 	}
 	
-	public List<BookMark> getClosestBookMarks(double longitude, double latitude, int maxNumResponses){
+	public List<BookMark> getClosestBookMarks(int maxNumResponses){
 		List<BookMark> allBookMarks = DBConnector.getInstance().getAllBookMarks();
 		Collections.sort(allBookMarks, new BookMark(longitude, latitude).compareBookMarksDist);
 		HashSet<Long> usedIds = new HashSet<Long>();

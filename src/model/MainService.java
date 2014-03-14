@@ -2,11 +2,16 @@ package model;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import database.DBConnector;
 
 /**
  * Servlet implementation class MainService
@@ -28,6 +33,14 @@ public class MainService extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+//		DBConnector db = DBConnector.getInstance();
+//		BookMark bm = new BookMark(44.760654, 41.726917); //vaja
+//		BookMark bm = new BookMark(44.789021, 41.724243); //dinamo
+		BookMark bm = new BookMark(44.818139, 41.710613); //mantobi
+		List<BookMark> ls = bm.getClosestBookMarks(1);
+		for(BookMark bm1 : ls){
+			System.out.println(bm1.getBookId());
+		}
 	}
 
 	/**
