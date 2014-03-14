@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 
 import java.sql.Connection;
@@ -29,30 +29,9 @@ public class ContextListener implements ServletContextListener {
      * @see ServletContextListener#contextInitialized(ServletContextEvent)
      */
     public void contextInitialized(ServletContextEvent arg0) {
-    	try {
-			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://" + server,
-					account, password);
-			ResultSet rset;
-			
-			stmt = con.createStatement();
-			stmt.executeQuery("USE " + database);
-			rset = stmt.executeQuery("select * from products");
-			rset.last();
-			System.out.println(rset.getRow());
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+
     }
     
-    static String server = "localhost";
-	static String password = "1234"; // <---------
-	static String account = "root";
-	static String database = "test"; // <---------
-	private static Connection con;
-	static Statement stmt;
 
 	/**
      * @see ServletContextListener#contextDestroyed(ServletContextEvent)
