@@ -42,6 +42,7 @@ public class CommentMark {
 		List<CommentMark> allCommentMarks = DBConnector.getInstance().getAllCommentMarks();
 		HashSet<Long> usedCommentIds = new HashSet<Long>();
 		ArrayList<CommentMark> comments = new ArrayList<CommentMark>();
+		Collections.sort(allCommentMarks, compareCommentsDistance);
 		for(CommentMark cm : allCommentMarks){
 			if(comments.size() >= maxNumResponses) break;
 			if(usedCommentIds.contains(cm.getId())) continue;
@@ -66,7 +67,7 @@ public class CommentMark {
 		public int compare(CommentMark arg0, CommentMark arg1) {
 			CommentMark cm = new CommentMark(getLongitude(), getLatitude());
 			double dist1 = getDistance(cm, arg0), dist2 = getDistance(cm, arg1);
-			return dist1<dist2 ? -1 : (dist1>dist2 ? 1 : 0);
+			return dist1<dist2 ? -1 : (dist1>dist2 ? 1 : arg0.hashCode()-arg1.hashCode());
 		}
 	};
 

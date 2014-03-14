@@ -77,7 +77,7 @@ public class DBConnector {
 	
 	public List<CommentMark> getAllCommentMarks(){
 		try{
-			ResultSet rset = stmt.executeQuery("select * from comment_coord order by time");
+			ResultSet rset = stmt.executeQuery("select * from comment_coord");
 			ArrayList<CommentMark> list = new ArrayList<CommentMark>();
 			while(rset.next()){
 					String bookIdStr = rset.getString("comment_id"), longitudeStr = rset.getString("longitude"), latitudeStr = rset.getString("latitude");
@@ -91,7 +91,7 @@ public class DBConnector {
 		return null;
 	}
 	
-	private SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD HH:MM:SS");
+	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd HH:MM:SS");
 	
 	public Comment getCommentById(long comment_id){
 		try{

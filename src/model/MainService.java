@@ -36,10 +36,13 @@ public class MainService extends HttpServlet {
 //		DBConnector db = DBConnector.getInstance();
 //		BookMark bm = new BookMark(44.760654, 41.726917); //vaja
 //		BookMark bm = new BookMark(44.789021, 41.724243); //dinamo
-		BookMark bm = new BookMark(44.818139, 41.710613); //mantobi
-		List<BookMark> ls = bm.getClosestBookMarks(1);
-		for(BookMark bm1 : ls){
-			System.out.println(bm1.getBookId());
+//		BookMark bm = new BookMark(44.818139, 41.710613); //mantobi
+//		List<BookMark> ls = bm.getClosestBookMarks(1);
+		
+		CommentMark bm = new CommentMark(44.818139, 41.710613);
+		List<CommentMark> ls = bm.getNearestCommentMarks(2);
+		for(CommentMark bm1 : ls){
+			System.out.println(bm1.getId());
 		}
 	}
 
