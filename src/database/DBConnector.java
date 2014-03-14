@@ -1,6 +1,9 @@
 package database;
 
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 import java.sql.*;
 import java.util.ArrayList;
@@ -72,5 +75,40 @@ public class DBConnector {
 		return null;
 	}
 	
+	public List<CommentMark> getAllCommentMarks(){
+		try{
+			ResultSet rset = stmt.executeQuery("select * from comment_coord order by time");
+			ArrayList<CommentMark> list = new ArrayList<CommentMark>();
+			while(rset.next()){
+					String bookIdStr = rset.getString("comment_id"), longitudeStr = rset.getString("longitude"), latitudeStr = rset.getString("latitude");
+					list.add(new CommentMark(Long.parseLong(bookIdStr), Double.parseDouble(longitudeStr), Double.parseDouble(latitudeStr)));
+			}
+			return list;
+		}
+		catch(SQLException ex){
+			ex.printStackTrace();
+		}
+		return null;
+	}
+	
+	private SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD HH:MM:SS");
+	
+	public Comment getCommentById(long comment_id){
+		try{
+			ResultSet rset = stmt.executeQuery("select * from comments where id = "+comment_id);
+			if(!rset.next()) return null;
+			Calendar cal = Calendar.getInstance();
+			String time = rset.getString("time"), name = rset.getString("name"), comment = rset.getString("comment");
+			cal.setTime(sdf.parse(time));
+			Comment com = new Comment(comment, name, cal);
+			return com;
+		}
+		catch(SQLException ex){
+			ex.printStackTrace();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
 }
