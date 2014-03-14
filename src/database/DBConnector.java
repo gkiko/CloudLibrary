@@ -43,7 +43,7 @@ public class DBConnector {
 	
 	public List<BookMark> getAllBookMarks(){
 		try{
-			ResultSet rset = stmt.executeQuery("select * from BookMarks");
+			ResultSet rset = stmt.executeQuery("select * from book_coord");
 			ArrayList<BookMark> list = new ArrayList<BookMark>();
 			while(rset.next()){
 					String bookIdStr = rset.getString("book_id"), longitudeStr = rset.getString("longitude"), latitudeStr = rset.getString("latitude");
@@ -59,9 +59,9 @@ public class DBConnector {
 	
 	public Book getBookById(long book_id){
 		try{
-			ResultSet rset = stmt.executeQuery("select * from Book where book_id = "+book_id);
+			ResultSet rset = stmt.executeQuery("select * from books where id = "+book_id);
 			if(!rset.next()) return null;
-			String authorInfo = rset.getString("author_info"), briefDescription = rset.getString("brief_description"),
+			String authorInfo = rset.getString("author"), briefDescription = rset.getString("description"),
 					title = rset.getString("title"), downloadUrl = rset.getString("download_url"), imageUrl = rset.getString("image_url");
 			Book book = new Book(authorInfo, briefDescription, title, downloadUrl, imageUrl);
 			return book;
