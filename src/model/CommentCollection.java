@@ -3,6 +3,9 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import database.DBConnector;
 
 public class CommentCollection {
@@ -14,6 +17,20 @@ public class CommentCollection {
 			comments.add(db.getCommentById(cm.getId()));
 		}
 		return comments;
+	}
+	
+	public JSONArray getCommentsJsonFrom(List<CommentMark> list){
+		ArrayList<Comment> comments = getCommentsFrom(list);
+		JSONArray array = new JSONArray();
+		JSONObject obj;
+		for(Comment b : comments){
+			obj = new JSONObject();
+			obj.put("Date", b.getTime());
+			obj.put("Name", b.getName());
+			obj.put("Comment", b.getComment());
+			array.add(obj);
+		}
+		return array;
 	}
 	
 }

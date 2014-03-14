@@ -91,22 +91,18 @@ public class DBConnector {
 		return null;
 	}
 	
-	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd HH:MM:SS");
+	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 	
 	public Comment getCommentById(long comment_id){
 		try{
 			ResultSet rset = stmt.executeQuery("select * from comments where id = "+comment_id);
 			if(!rset.next()) return null;
-			Calendar cal = Calendar.getInstance();
-			String time = rset.getString("time"), name = rset.getString("name"), comment = rset.getString("comment");
-			cal.setTime(sdf.parse(time));
-			Comment com = new Comment(comment, name, cal);
+			String name = rset.getString("name"), comment = rset.getString("comment");
+			Comment com = new Comment(comment, name, sdf.format(rset.getTimestamp("time").getTime()));
 			return com;
 		}
 		catch(SQLException ex){
 			ex.printStackTrace();
-		} catch (ParseException e) {
-			e.printStackTrace();
 		}
 		return null;
 	}

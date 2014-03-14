@@ -1,16 +1,15 @@
 package model;
 
-import java.util.Calendar;
 
 public class Comment {
 	
 	private String comment;
 	
-	private Calendar time;
+	private String time;
 	
 	private String name;
 	
-	public Comment(String comment, String name, Calendar time){
+	public Comment(String comment, String name, String time){
 		this.comment = comment;
 		this.name = name;
 		this.time = time;
@@ -24,7 +23,7 @@ public class Comment {
 		return name;
 	}
 	
-	public Calendar getTime(){
+	public String getTime(){
 		return time;
 	}
 	
