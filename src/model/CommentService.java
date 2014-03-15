@@ -1,5 +1,6 @@
 package model;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -31,7 +32,10 @@ public class CommentService extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		CommentMark bm = new CommentMark(44.818139, 41.710613);
+		System.out.println("doGet");
+		double longitude = Double.parseDouble(request.getParameter("longitude"));
+		double latitude = Double.parseDouble(request.getParameter("latitude"));
+		CommentMark bm = new CommentMark(longitude, latitude);
 		List<CommentMark> ls = bm.getNearestCommentMarks(2);
 		
 		CommentCollection cCollection = new CommentCollection();
@@ -46,7 +50,15 @@ public class CommentService extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		System.out.println("doPost");
+		BufferedReader br = request.getReader();
+		StringBuilder sb = new StringBuilder();
+		String line;
+		while((line = br.readLine()) != null){
+			System.out.println(line);
+			sb.append(line);
+		}
+		System.out.println(sb.toString());
 	}
 
 }

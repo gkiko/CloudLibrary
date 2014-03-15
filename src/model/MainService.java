@@ -37,9 +37,10 @@ public class MainService extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		double longitude = Double.parseDouble(request.getParameter("longitude"));
+		double latitude = Double.parseDouble(request.getParameter("latitude"));
 //		DBConnector db = DBConnector.getInstance();
-		BookMark bm = new BookMark(44.760654, 41.726917); //vaja
+		BookMark bm = new BookMark(longitude, latitude); //vaja
 //		BookMark bm = new BookMark(44.789021, 41.724243); //dinamo
 //		BookMark bm = new BookMark(44.818139, 41.710613); //mantobi
 //		List<BookMark> ls = bm.getClosestBookMarks(1);
