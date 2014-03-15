@@ -26,7 +26,7 @@ public class CommentCollection {
 		for(Comment b : comments){
 			obj = new JSONObject();
 			obj.put("Date", b.getTime());
-			obj.put("Name", b.getName());
+			obj.put("Id", b.getId());
 			obj.put("Comment", b.getComment());
 			array.add(obj);
 		}

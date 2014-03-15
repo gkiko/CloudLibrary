@@ -7,11 +7,11 @@ public class Comment {
 	
 	private String time;
 	
-	private String name;
+	private String id;
 	
-	public Comment(String comment, String name, String time){
+	public Comment(String comment, String id, String time){
 		this.comment = comment;
-		this.name = name;
+		this.id = id;
 		this.time = time;
 	}
 	
@@ -19,8 +19,8 @@ public class Comment {
 		return comment;
 	}
 	
-	public String getName(){
-		return name;
+	public String getId(){
+		return id;
 	}
 	
 	public String getTime(){

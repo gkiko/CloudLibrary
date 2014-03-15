@@ -97,7 +97,7 @@ public class DBConnector {
 		try{
 			ResultSet rset = stmt.executeQuery("select * from comments where id = "+comment_id);
 			if(!rset.next()) return null;
-			String name = rset.getString("name"), comment = rset.getString("comment");
+			String name = rset.getString("user_id"), comment = rset.getString("comment");
 			Comment com = new Comment(comment, name, sdf.format(rset.getTimestamp("time").getTime()));
 			return com;
 		}

@@ -54,6 +54,7 @@ public class CommentService extends HttpServlet {
 		BufferedReader br = request.getReader();
 		StringBuilder sb = new StringBuilder();
 		String line;
+		System.out.println(br.readLine());
 		while((line = br.readLine()) != null){
 			System.out.println(line);
 			sb.append(line);
